@@ -29,6 +29,7 @@ func LoadConfig(fileName string) Config {
 		Dbname:      os.Getenv("CSV_DBNAME"),
 		Schedule:    os.Getenv("CSV_SCHEDULE"),
 		ReportsPath: os.Getenv("CSV_REPORTS_PATH"),
+		Port:        5432,
 	}
 	if portStr := os.Getenv("CSV_DBPORT"); portStr != "" {
 		if port, err := strconv.ParseUint(portStr, 10, 16); err != nil {

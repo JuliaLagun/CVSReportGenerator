@@ -17,12 +17,14 @@ func TestLoadConfig(t *testing.T) {
 `
 	byteArrayData := []byte(data)
 	var cfg Config
-	cfg.parseConfig(byteArrayData)
+	if err := cfg.parseConfig(byteArrayData); err != nil {
+		t.Fatalf("cannot parse config: %v", err)
+	}
 
 	testCfg := Config{Host: "localhost", Port: 5432, User: "postgres", Password: "postgres", Dbname: "test1",
 		Schedule: "@every 10s", ReportsPath: "/Users/julialagun/GolandProjects/CVSReportGenerator/data"}
 
 	if cfg != testCfg {
-		t.Errorf("expected:\n%s\ngot:\n%s", testCfg, cfg)
+		t.Errorf("expected:\n%v\ngot:\n%v", testCfg, cfg)
 	}
 }
