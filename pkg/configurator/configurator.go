@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+// Config is the config structure
 type Config struct {
 	Host        string `json:"host"`
 	Port        uint16 `json:"port"`
@@ -21,6 +22,7 @@ func (c *Config) parseConfig(data []byte) error {
 	return json.Unmarshal(data, &c)
 }
 
+// LoadConfig loads config settings from JSON file or environment variables
 func LoadConfig(fileName string) Config {
 	cfg := Config{
 		Host:        os.Getenv("CSV_DBHOST"),

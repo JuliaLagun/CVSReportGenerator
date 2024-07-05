@@ -5,12 +5,14 @@ import (
 	"io"
 )
 
+// Customer data structure represents database customer table row
 type Customer struct {
 	Id           int
 	Name         string
 	EmailAddress string
 }
 
+// CreateCSVFile writes an array of customer data to the output writer (`out`) in csv format
 func CreateCSVFile(out io.Writer, customers []Customer) error {
 	header := "id, name, email_address"
 	if _, err := fmt.Fprintln(out, header); err != nil {

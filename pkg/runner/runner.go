@@ -59,10 +59,12 @@ func (r *Runner) runSchedule(cfg configurator.Config, fn func()) error {
 	return nil
 }
 
+// genFileName generates report file name based on current time
 func genFileName(outputDirectory string) string {
 	return path.Join(outputDirectory, time.Now().Format(time.DateTime)+".csv")
 }
 
+// makeReport reads data from database and writes reports to the outputDirectory
 func makeReport(outputDirectory string, db *sql.DB) error {
 	rows, err := dbreader.GetData(db)
 	if err != nil {

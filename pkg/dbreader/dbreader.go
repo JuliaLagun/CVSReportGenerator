@@ -1,5 +1,6 @@
 package dbreader
 
+// package for database related code
 import (
 	"database/sql"
 	"fmt"
@@ -15,6 +16,7 @@ func makeConnectionString(cfg configurator.Config) string {
 		cfg.Host, cfg.Port, cfg.User, cfg.Password, cfg.Dbname)
 }
 
+// OpenDB opens database using connection parameters from the config
 func OpenDB(cfg configurator.Config) (*sql.DB, error) {
 	postgresqlDbInfo := makeConnectionString(cfg)
 	db, err := sql.Open("postgres", postgresqlDbInfo)
@@ -27,8 +29,8 @@ func OpenDB(cfg configurator.Config) (*sql.DB, error) {
 	return db, nil
 }
 
+// GetData returns array of Customers from the DB
 func GetData(db *sql.DB) ([]reportgen.Customer, error) {
-	//Executing query
 	rows, err := db.Query("SELECT id, name, email_address FROM customers")
 	if err != nil {
 		return nil, err

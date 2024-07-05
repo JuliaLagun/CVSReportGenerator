@@ -10,7 +10,7 @@ import (
 	"csv-reports-generator/pkg/runner"
 )
 
-// command line argument - path to config.json
+// command line argument - path to config.json (optional)
 func main() {
 	r := runner.NewRunner()
 	if len(os.Args) < 2 {
